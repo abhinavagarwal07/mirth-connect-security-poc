@@ -1,0 +1,26 @@
+target_ready=true
+target_image=nextgenhealthcare/connect:4.5.2@sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836
+target_image_id=sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836 target_repo_digests=["nextgenhealthcare/connect@sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836"]
+target_version=4.5.2 target_container=mirth-poc-target-20260908T191620Z-21867-8055 lab_network=mirth-poc-20260908T191620Z-21867-8055
+channel_create_http_status=200 channel_create_body=true
+channel_deploy_http_status=204 deployed_channel=mirth-poc-xslt-xxe
+channel_create_http_status=200 channel_create_body=true
+channel_deploy_http_status=204 deployed_channel=mirth-poc-xslt-control
+listener_ready_port=9999
+listener_ready_port=9998
+negative_no_doctype_status=200
+PASS: no-DOCTYPE negative arm caused no external-entity callback
+listener_http_status=200
+oob_leak='MIRTH_XSLT_XXE_CANARY_20260908T191620Z-21867-2887-28840'
+PASS: unauthenticated listener input exfiltrated a target-local file through XSLT parsing
+availability_baseline_victim=200 control=200 admin=200
+slow_entity_target_connected=true
+victim_probe_1=timed_out
+isolation_control_1_status=200 admin_status=200
+victim_probe_2=timed_out
+isolation_control_2_status=200 admin_status=200
+victim_probe_3=timed_out
+isolation_control_3_status=200 admin_status=200
+slow_entity_attack_result={'status': 200}
+victim_recovery_status=200
+PASS: one slow external entity denied the one-thread victim channel while a separate channel and admin API stayed healthy; release restored the victim

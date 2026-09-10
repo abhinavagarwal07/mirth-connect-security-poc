@@ -1,0 +1,10 @@
+target_ready=true
+target_image=nextgenhealthcare/connect:4.5.2@sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836
+target_image_id=sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836 target_repo_digests=["nextgenhealthcare/connect@sha256:4afa295cfe7c5ffd596efee69594157fea87202e33d66bb4a98a52db4598f836"]
+target_version=4.5.2 target_container=mirth-poc-target-20260908T191238Z-20769-27096 lab_network=mirth-poc-20260908T191238Z-20769-27096
+channel_create_http_status=200 channel_create_body=true
+channel_deploy_http_status=204 deployed_channel=mirth-poc-xml-batch-xxe
+listener_ready_port=9997
+listener_result=HTTPError: HTTP Error 500: Server Error
+oob_leak='MIRTH_XML_BATCH_XXE_CANARY_20260908T191238Z-20769-17783-31203'
+PASS: unauthenticated batch input exfiltrated a target-local file through XMLBatchAdaptor

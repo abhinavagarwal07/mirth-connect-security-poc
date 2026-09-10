@@ -1,0 +1,190 @@
+<channel version="4.5.2">
+    <id>mirth-poc-xslt-xxe</id>
+    <nextMetaDataId>2</nextMetaDataId>
+    <name>PoC - XSLT Step XXE</name>
+    <description>Isolated lab fixture for the XSLT Step external-entity vulnerability.</description>
+    <revision>1</revision>
+    <sourceConnector version="4.5.2">
+      <metaDataId>0</metaDataId>
+      <name>sourceConnector</name>
+      <properties class="com.mirth.connect.connectors.http.HttpReceiverProperties" version="4.5.2">
+        <pluginProperties/>
+        <listenerConnectorProperties version="4.5.2">
+          <host>0.0.0.0</host>
+          <port>9999</port>
+        </listenerConnectorProperties>
+        <sourceConnectorProperties version="4.5.2">
+          <responseVariable>None</responseVariable>
+          <respondAfterProcessing>true</respondAfterProcessing>
+          <processBatch>false</processBatch>
+          <firstResponse>false</firstResponse>
+          <processingThreads>1</processingThreads>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+        </sourceConnectorProperties>
+        <xmlBody>false</xmlBody>
+        <parseMultipart>true</parseMultipart>
+        <includeMetadata>false</includeMetadata>
+        <binaryMimeTypes>application/.*(?&lt;!json|xml)$|image/.*|video/.*|audio/.*</binaryMimeTypes>
+        <binaryMimeTypesRegex>true</binaryMimeTypesRegex>
+        <responseContentType>text/plain</responseContentType>
+        <responseDataTypeBinary>false</responseDataTypeBinary>
+        <responseStatusCode></responseStatusCode>
+        <responseHeaders class="linked-hash-map"/>
+        <responseHeadersVariable></responseHeadersVariable>
+        <useResponseHeadersVariable>false</useResponseHeadersVariable>
+        <charset>UTF-8</charset>
+        <contextPath></contextPath>
+        <timeout>30000</timeout>
+        <staticResources/>
+      </properties>
+      <transformer version="4.5.2">
+        <elements>
+          <com.mirth.connect.plugins.xsltstep.XsltStep version="4.5.2">
+            <name>XSLT Identity Transform</name>
+            <sequenceNumber>0</sequenceNumber>
+            <enabled>true</enabled>
+            <sourceXml>connectorMessage.getRawData()</sourceXml>
+            <resultVariable>xsltResult</resultVariable>
+            <template>&apos;&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;&lt;xsl:template match=&quot;/&quot;&gt;&lt;xsl:copy-of select=&quot;.&quot;/&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;&apos;</template>
+            <useCustomFactory>false</useCustomFactory>
+            <customFactory></customFactory>
+          </com.mirth.connect.plugins.xsltstep.XsltStep>
+        </elements>
+        <inboundDataType>RAW</inboundDataType>
+        <outboundDataType>RAW</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.raw.RawDataTypeProperties" version="4.5.2">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.raw.RawBatchProperties" version="4.5.2">
+            <splitType>JavaScript</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.raw.RawDataTypeProperties" version="4.5.2">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.raw.RawBatchProperties" version="4.5.2">
+            <splitType>JavaScript</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <filter version="4.5.2">
+        <elements/>
+      </filter>
+      <transportName>HTTP Listener</transportName>
+      <mode>SOURCE</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </sourceConnector>
+    <destinationConnectors>
+      <connector version="4.5.2">
+        <metaDataId>1</metaDataId>
+        <name>Destination 1</name>
+        <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="4.5.2">
+          <pluginProperties/>
+          <destinationConnectorProperties version="4.5.2">
+            <queueEnabled>false</queueEnabled>
+            <sendFirst>false</sendFirst>
+            <retryIntervalMillis>10000</retryIntervalMillis>
+            <regenerateTemplate>false</regenerateTemplate>
+            <retryCount>0</retryCount>
+            <rotate>false</rotate>
+            <includeFilterTransformer>false</includeFilterTransformer>
+            <threadCount>1</threadCount>
+            <threadAssignmentVariable></threadAssignmentVariable>
+            <validateResponse>false</validateResponse>
+            <resourceIds class="linked-hash-map">
+              <entry>
+                <string>Default Resource</string>
+                <string>[Default Resource]</string>
+              </entry>
+            </resourceIds>
+            <queueBufferSize>1000</queueBufferSize>
+            <reattachAttachments>true</reattachAttachments>
+          </destinationConnectorProperties>
+          <channelId>none</channelId>
+          <channelTemplate>None</channelTemplate>
+          <mapVariables/>
+        </properties>
+        <transformer version="4.5.2">
+          <elements/>
+          <inboundDataType>RAW</inboundDataType>
+          <outboundDataType>RAW</outboundDataType>
+          <inboundProperties class="com.mirth.connect.plugins.datatypes.raw.RawDataTypeProperties" version="4.5.2">
+            <batchProperties class="com.mirth.connect.plugins.datatypes.raw.RawBatchProperties" version="4.5.2">
+              <splitType>JavaScript</splitType>
+              <batchScript></batchScript>
+            </batchProperties>
+          </inboundProperties>
+          <outboundProperties class="com.mirth.connect.plugins.datatypes.raw.RawDataTypeProperties" version="4.5.2">
+            <batchProperties class="com.mirth.connect.plugins.datatypes.raw.RawBatchProperties" version="4.5.2">
+              <splitType>JavaScript</splitType>
+              <batchScript></batchScript>
+            </batchProperties>
+          </outboundProperties>
+        </transformer>
+        <responseTransformer version="4.5.2">
+          <elements/>
+          <inboundDataType>RAW</inboundDataType>
+          <outboundDataType>RAW</outboundDataType>
+          <inboundProperties class="com.mirth.connect.plugins.datatypes.raw.RawDataTypeProperties" version="4.5.2">
+            <batchProperties class="com.mirth.connect.plugins.datatypes.raw.RawBatchProperties" version="4.5.2">
+              <splitType>JavaScript</splitType>
+              <batchScript></batchScript>
+            </batchProperties>
+          </inboundProperties>
+          <outboundProperties class="com.mirth.connect.plugins.datatypes.raw.RawDataTypeProperties" version="4.5.2">
+            <batchProperties class="com.mirth.connect.plugins.datatypes.raw.RawBatchProperties" version="4.5.2">
+              <splitType>JavaScript</splitType>
+              <batchScript></batchScript>
+            </batchProperties>
+          </outboundProperties>
+        </responseTransformer>
+        <filter version="4.5.2">
+          <elements/>
+        </filter>
+        <transportName>Channel Writer</transportName>
+        <mode>DESTINATION</mode>
+        <enabled>true</enabled>
+        <waitForPrevious>true</waitForPrevious>
+      </connector>
+    </destinationConnectors>
+    <preprocessingScript>return message;</preprocessingScript>
+    <postprocessingScript>return;</postprocessingScript>
+    <deployScript>return;</deployScript>
+    <undeployScript>return;</undeployScript>
+    <properties version="4.5.2">
+      <clearGlobalChannelMap>true</clearGlobalChannelMap>
+      <messageStorageMode>DEVELOPMENT</messageStorageMode>
+      <encryptData>false</encryptData>
+      <encryptAttachments>false</encryptAttachments>
+      <encryptCustomMetaData>false</encryptCustomMetaData>
+      <removeContentOnCompletion>false</removeContentOnCompletion>
+      <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
+      <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
+      <initialState>STARTED</initialState>
+      <storeAttachments>true</storeAttachments>
+      <metaDataColumns/>
+      <attachmentProperties version="4.5.2">
+        <type>None</type>
+        <properties/>
+      </attachmentProperties>
+      <resourceIds class="linked-hash-map">
+        <entry>
+          <string>Default Resource</string>
+          <string>[Default Resource]</string>
+        </entry>
+      </resourceIds>
+    </properties>
+    <exportData>
+      <metadata>
+        <enabled>true</enabled>
+      </metadata>
+      <dependentIds/>
+      <dependencyIds/>
+      <channelTags/>
+    </exportData>
+</channel>
